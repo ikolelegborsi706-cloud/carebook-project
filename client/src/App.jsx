@@ -13,6 +13,7 @@ import HomePage from './pages/Home'
 import AdminDashboard from './pages/Dashboards/AdminDashboard'
 import PatientDashboard from './pages/Dashboards/PatientDashboard'
 import DoctorDashboard from './pages/Dashboards/DoctorDashboard'
+import DashboardLayout from './pages/Dashboards/layout/DashboardLayout'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/reset-password' element={<ResetPassword />} />
+          <Route path='/dashboard' element={<DashboardLayout role="patient" />}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </main>
