@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import express from 'express'
 import { connectDB } from './config/db.js';
+import authRoutes from "./routes/authRoutes.js"
 
 
 
@@ -9,6 +10,8 @@ const app = express();
 const PORT = process.env.RUNNINGPORT || 8000;
 
 app.use(express.json());
+// this route handles all authentification and authorization
+app.use("/api/auth", authRoutes);
 
 // test home route
 app.get("/", (req, res) => res.json("Helloooo"));
