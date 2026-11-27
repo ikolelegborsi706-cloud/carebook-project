@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import AuthLayout from '../pages/layouts/AuthLayout.jsx';
+import { BiSolidHide } from "react-icons/bi";
+import { BiSolidShow } from "react-icons/bi";
 
 const START = {
   firstName: '', lastName: '', email: '', phone: '', dateOfBirth: '', password: '',
@@ -29,6 +31,7 @@ export default function Register() {
   const [values, setValues] = useState({ ...START, role: searchParams.get('role') === 'doctor' ? 'doctor' : 'patient' });
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const update = (e) => setValues({ ...values, [e.target.name]: e.target.value });
   const isDoctor = values.role === 'doctor';
@@ -93,10 +96,16 @@ export default function Register() {
           </label>
         </>
       )}
-      <label className="field">Password
-        <input name="password" type="password" required minLength="8" autoComplete="new-password" value={values.password} onChange={update} />
+       <div className="field">
+      <label className="field">Password</label>
+      <div className="password-field">
+        <input type={showPassword ? "text" : "password"} name='password' required value={values.password} onChange={update} minLength={8} />
+        <button className="show-password" onClick={() => setShowPassword(!showPassword)}>
+         {showPassword ? <BiSolidHide /> : <BiSolidShow />}
+        </button>
+      </div>
         <PasswordStrength password={values.password} />
-      </label>
+         </div>
       {error && <p className="error" role="alert">{error}</p>}
       <button className="btn btn-block" disabled={saving}>{saving ? 'Creating account...' : 'Create account'}</button>
       <p className="small center">Already have an account? <Link to="/login">Log in</Link></p>

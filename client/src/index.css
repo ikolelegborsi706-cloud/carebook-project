@@ -447,6 +447,14 @@ margin-top: 0.8rem;
 }
 .password-field {
   position: relative;
+  display: flex;
+  align-items: center;
+}
+.show-password {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .password-field input {

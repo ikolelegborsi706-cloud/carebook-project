@@ -17,6 +17,7 @@ import { MdLogout } from 'react-icons/md';
 import logoOnDark from "../../../assets/logo/logo-on-dark.svg";
 import logo from "../../../assets/logo/logo.svg";
  import { FiUsers } from "react-icons/fi";
+ import { useAuth } from '../../../context/AuthContext';
 
 
 
@@ -61,6 +62,7 @@ const ROLE_LABEL = {
 }
 
 function DashboardLayout({role}) {
+    const {user, logout} = useAuth();
     const [open, setOpen] = useState(false);
     const menu = ASIDEMENU[role];
 
@@ -93,7 +95,7 @@ function DashboardLayout({role}) {
             })
            }
          </nav>
-         <button className="dash-logout">
+         <button className="dash-logout" onClick={logout}>
             <MdLogout />
             <span className="sr-only">Log out</span>
          </button>
